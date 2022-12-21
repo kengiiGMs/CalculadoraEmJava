@@ -13,7 +13,12 @@ public class CalculadoraController {
 		if(operacao.equals(EnumOperacao.SOMA)) {
 			total += valor;
 		}else if(operacao.equals(EnumOperacao.SUBTRACAO)) {
-			total -= valor;
+			if(total == 0.0) {
+				total += valor;
+			}else {
+				total -= valor;
+			}
+			
 		}else if(operacao.equals(EnumOperacao.MULTIPLICACAO)) {
 			total *= valor;
 		}else if(operacao.equals(EnumOperacao.DIVISAO)) {
@@ -25,6 +30,7 @@ public class CalculadoraController {
 	public Double getTotal() {
 		return this.total;
 	}
+	
 	
 	public void zerar() {
 		total=0.0;
