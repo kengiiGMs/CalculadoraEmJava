@@ -4,6 +4,7 @@ import enums.EnumOperacao;
 
 public class CalculadoraController {
 	private Double total;
+	private Boolean zero = false;
 	
 	public CalculadoraController() {
 		total= 0.0;
@@ -27,7 +28,26 @@ public class CalculadoraController {
 			}
 			
 		}else if(operacao.equals(EnumOperacao.DIVISAO)) {
-			total /= valor;
+			if(total == 0.0 && zero == false) {
+				if(valor == 0.0 && valor == 0) {
+					total += valor;
+					zero = true;
+				}else {
+					total += valor;
+				}
+				
+			}else{
+				if(zero == true) {
+					total = 0.0;
+					zero = false;
+				}else {
+					total /= valor;
+					zero = false;
+				}
+			
+				
+			}
+			
 		}
 		return total;
 	}

@@ -74,6 +74,19 @@ public class jFrTela extends JFrame {
 		}
 	}
 	
+	private void trocaSinais(){
+		String dado;
+		if(tfValor.getText().equals("0,00")) {
+			
+		}else {
+			if(tfValor.getText().contains("-")) {
+				dado = tfValor.getText().replaceAll("-","");
+				tfValor.setText(dado);
+			}else {
+				tfValor.setText("-" + tfValor.getText());
+			}
+		}
+	}
 	
 	
 	public jFrTela() {
@@ -114,12 +127,22 @@ public class jFrTela extends JFrame {
 		panel.add(btn_ac);
 		
 		
+		JButton btn_apagar = new JButton("C");
+		btn_apagar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpa();
+			}
+		});
+		panel.add(btn_apagar);
+		
+		
 		JButton btn_maismenos = new JButton("+/-");
+		btn_maismenos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				trocaSinais();
+			}
+		});
 		panel.add(btn_maismenos);
-		
-		
-		JButton btn_porcentagem = new JButton("%");
-		panel.add(btn_porcentagem);
 		
 		
 		JButton btn_dividir = new JButton("/");
@@ -127,7 +150,12 @@ public class jFrTela extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				calculadoraController.realizarOperacao(EnumOperacao.DIVISAO,stringToDouble(tfValor.getText()));
 				ultimaOperacao = EnumOperacao.DIVISAO;
-				
+				if(tfConta.getText() == "") {
+					tfConta.setText(tfValor.getText() + "/");
+				}else {
+					imprimirConta("/");
+					
+				}
 				limpa();
 			}
 		});
