@@ -20,7 +20,12 @@ public class CalculadoraController {
 			}
 			
 		}else if(operacao.equals(EnumOperacao.MULTIPLICACAO)) {
-			total *= valor;
+			if(total == 0.0) {
+				total += valor;
+			}else {
+				total *= valor;
+			}
+			
 		}else if(operacao.equals(EnumOperacao.DIVISAO)) {
 			total /= valor;
 		}

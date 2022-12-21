@@ -166,6 +166,12 @@ public class jFrTela extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				calculadoraController.realizarOperacao(EnumOperacao.MULTIPLICACAO,stringToDouble(tfValor.getText()));
 				ultimaOperacao = EnumOperacao.MULTIPLICACAO;
+				if(tfConta.getText() == "") {
+					tfConta.setText(tfValor.getText() + "*");
+				}else {
+					imprimirConta("*");
+					
+				}
 				limpa();
 			}
 		});
